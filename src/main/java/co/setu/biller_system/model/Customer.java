@@ -5,7 +5,7 @@ import java.util.Date;
 public class Customer {
 	private String customerName;
 	private double dueAmount;
-	private Date dueDate;
+	private String dueDate;
 	private long mobileNumber;
 	private String refID;
 	private String ackID;
@@ -15,7 +15,7 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String customerName, double dueAmount, Date dueDate, long mobileNumber, String refID,
+	public Customer(String customerName, double dueAmount, String dueDate, long mobileNumber, String refID,
 			boolean isPaid) {
 		super();
 		this.customerName = customerName;
@@ -42,11 +42,11 @@ public class Customer {
 		this.dueAmount = dueAmount;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
