@@ -1,17 +1,20 @@
 package co.setu.biller_system.service;
 
-import java.nio.charset.Charset;
 import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import co.setu.biller_system.constant.APIStatus;
 import co.setu.biller_system.constant.Statuses;
 import co.setu.biller_system.database.DatabaseClass;
-import co.setu.biller_system.model.*;
+import co.setu.biller_system.model.BillDetails;
+import co.setu.biller_system.model.Customer;
+import co.setu.biller_system.model.ErrorMessage;
+import co.setu.biller_system.model.FetchBillResponse;
+import co.setu.biller_system.model.PaymentRequest;
+import co.setu.biller_system.model.PaymentResponse;
+import co.setu.biller_system.model.ResponseMessage;
+import co.setu.biller_system.model.Transaction;
 
 public class BillService {
 
@@ -24,12 +27,9 @@ public class BillService {
 		createCustomersData();
 		createBillingDetails();
 		createTransactionDetails();
-		// bills.put(9898000012L, new Customer("Ashok Kumar", 2000, "2020-06-05",
-		// 9898000012L, "AX0812878", false));
 	}
 
 	private void createTransactionDetails() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -10,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import co.setu.biller_system.constant.APIStatus;
 import co.setu.biller_system.constant.Statuses;
 import co.setu.biller_system.database.DatabaseClass;
 import co.setu.biller_system.model.*;
@@ -24,7 +23,7 @@ public class BillResource {
 	static BillService billService = new BillService();
 
 	@GET
-	public String getJsonMessages() {
+	public String getJsonMessages() throws Exception {
 		return "Bill fetched";
 	}
 

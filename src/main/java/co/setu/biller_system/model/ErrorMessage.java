@@ -1,11 +1,14 @@
 package co.setu.biller_system.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ErrorMessage {
 	private String errorMessage;
 	private String status;
 
 	public ErrorMessage() {
-
+		super();
 	}
 
 	public ErrorMessage(String errorMessage, String status) {
