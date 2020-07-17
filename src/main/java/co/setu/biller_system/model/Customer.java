@@ -1,29 +1,19 @@
 package co.setu.biller_system.model;
 
-import java.util.Date;
-
 public class Customer {
 	private String customerName;
-	private double dueAmount;
-	private String dueDate;
-	private long mobileNumber;
+	private String mobileNumber;
 	private String refID;
-	private String ackID;
-	private boolean isPaid;
 
 	public Customer() {
 		super();
 	}
 
-	public Customer(String customerName, double dueAmount, String dueDate, long mobileNumber, String refID,
-			boolean isPaid) {
+	public Customer(String customerName, String mobileNumber, String refID) {
 		super();
 		this.customerName = customerName;
-		this.dueAmount = dueAmount;
-		this.dueDate = dueDate;
 		this.mobileNumber = mobileNumber;
 		this.refID = refID;
-		this.isPaid = isPaid;
 	}
 
 	public String getCustomerName() {
@@ -34,27 +24,28 @@ public class Customer {
 		this.customerName = customerName;
 	}
 
-	public double getDueAmount() {
-		return dueAmount;
-	}
+//	public double getDueAmount() {
+//		return dueAmount;
+//	}
+//
+//	public void setDueAmount(double dueAmount) {
+//		this.dueAmount = dueAmount;
+//	}
+//
+//	public String getDueDate() {
+//		return dueDate;
+//	}
+//
+//	public void setDueDate(String dueDate) {
+//		this.dueDate = dueDate;
+//	}
 
-	public void setDueAmount(double dueAmount) {
-		this.dueAmount = dueAmount;
-	}
-
-	public String getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	public long getMobileNumber() {
+	public String getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(String mobileNumber) {
+
 		this.mobileNumber = mobileNumber;
 	}
 
@@ -68,8 +59,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "customer [customerName=" + customerName + ", dueAmount=" + dueAmount + ", dueDate=" + dueDate
-				+ ", mobileNumber=" + mobileNumber + ", refID=" + refID + "]";
+		return "Customer [customerName=" + customerName + ", mobileNumber=" + mobileNumber + ", refID=" + refID + "]";
 	}
 
 }

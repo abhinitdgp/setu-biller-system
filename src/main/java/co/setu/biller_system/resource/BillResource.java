@@ -10,10 +10,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import co.setu.biller_system.constant.APIStatus;
+import co.setu.biller_system.constant.Statuses;
 import co.setu.biller_system.database.DatabaseClass;
-import co.setu.biller_system.model.Customer;
-import co.setu.biller_system.model.ErrorMessage;
-import co.setu.biller_system.model.ResponseMessage;
+import co.setu.biller_system.model.*;
 import co.setu.biller_system.service.BillService;
 
 @Path("/v1")
@@ -21,7 +21,7 @@ import co.setu.biller_system.service.BillService;
 @Produces(MediaType.APPLICATION_JSON)
 public class BillResource {
 
-	BillService billService = new BillService();
+	static BillService billService = new BillService();
 
 	@GET
 	public String getJsonMessages() {
@@ -30,29 +30,43 @@ public class BillResource {
 
 	@Path("/fetch-bill")
 	@POST
-	public Response fetchBill(Customer cust, @HeaderParam("X-API-KEY") String api_key) {
+	public Response fetchBill(Customer customer, @HeaderParam("X-API-KEY") String api_key) {
 		if (api_key == null || api_key.isEmpty() || !isValid(api_key)) {
-			ErrorMessage statusMessage = new ErrorMessage();
-			statusMessage.setStatus("ERROR");
-			statusMessage.setErrorMessage("auth-error");
-			return Response.status(403).entity(statusMessage).build();
+			ErrorMessage errorMessage = new ErrorMessage("auth-error", Statuses.ERROR);
+			return Response.status(403).entity(errorMessage).build();
+		}
+		if (customer == null || customer.getMobileNumber() == null || customer.getMobileNumber().isEmpty()) {
+			ErrorMessage errorMsg = new ErrorMessage("invalid-api-parameters", Statuses.ERROR);
+			return Response.status(400).entity(errorMsg).build();
 		}
 
-		ResponseMessage res = billService.fetchBill(cust.getMobileNumber());
-		return Response.status(Status.OK).entity(res).build();
+		ResponseMessage response = billService.fetchBill(Long.parseLong(customer.getMobileNumber()));
+		if (response == null) {
+			ErrorMessage errorMessage = new ErrorMessage("customer-not-found", "ERROR");
+			return Response.status(404).entity(errorMessage).build();
+		}
+		return Response.status(Status.OK).entity(response).build();
 	}
 
 	@Path("/payment-update")
 	@POST
-	public Response updatePayment(String mobileNumber, @HeaderParam("X-API-KEY") String api_key) {
+	public Response updatePayment(PaymentRequest payReq, @HeaderParam("X-API-KEY") String api_key) {
 		if (api_key == null || api_key.isEmpty() || !isValid(api_key)) {
-			ErrorMessage statusMessage = new ErrorMessage();
-			statusMessage.setStatus("ERROR");
-			statusMessage.setErrorMessage("auth-error");
-			return Response.status(403).entity(statusMessage).build();
+			ErrorMessage errorMessage = new ErrorMessage("auth-error", Statuses.ERROR);
+			return Response.status(403).entity(errorMessage).build();
 		}
-
-		return Response.status(Status.OK).build();
+		if (payReq == null || payReq.getRefID().isEmpty()) {
+			ErrorMessage errorMsg = new ErrorMessage("invalid-api-parameters", Statuses.ERROR);
+			return Response.status(400).entity(errorMsg).build();
+		}
+//		ResponseMessage response = billService.updatePayment(payReq);
+//		if (response == null) {
+//			ErrorMessage errorMessage = new ErrorMessage("customer-not-found", "ERROR");
+//			return Response.status(404).entity(errorMessage).build();
+//		}
+		// return Response.status(Status.OK).build();
+		Response res = billService.updatePayment(payReq);
+		return res;
 	}
 
 	private boolean isValid(String api_key) {
