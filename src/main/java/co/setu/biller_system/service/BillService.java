@@ -34,12 +34,12 @@ public class BillService {
 	}
 
 	private void createBillingDetails() {
-		bills.put("AX0812878", new BillDetails(2000, "2020-06-05", "AX0812878"));
-		bills.put("AX0812831", new BillDetails(3532, "2020-07-15", "AX0812831"));
-		bills.put("AX0373873", new BillDetails(9824, "2020-10-08", "AX0373873"));
-		bills.put("AX0299382", new BillDetails(1679, "2020-11-22", "AX0299382"));
-		bills.put("AX0728945", new BillDetails(6523, "2020-08-11", "AX0728945"));
-		bills.put("AX0126783", new BillDetails(7736, "2020-12-28", "AX0126783"));
+		bills.put("AX0812878", new BillDetails("2000", "2020-06-05", "AX0812878"));
+		bills.put("AX0812831", new BillDetails("3532", "2020-07-15", "AX0812831"));
+		bills.put("AX0373873", new BillDetails("9824", "2020-10-08", "AX0373873"));
+		bills.put("AX0299382", new BillDetails("1679", "2020-11-22", "AX0299382"));
+		bills.put("AX0728945", new BillDetails("6523", "2020-08-11", "AX0728945"));
+		bills.put("AX0126783", new BillDetails("7736", "2020-12-28", "AX0126783"));
 	}
 
 	private void createCustomersData() {
@@ -75,12 +75,12 @@ public class BillService {
 			if (bills.containsKey(refId)) {
 				BillDetails bill = bills.get(refId);
 				if (bill != null && (bill.getAckId() == null || bill.getAckId().isEmpty())) {
-					double paidAmount = payReq.getTransaction().getAmountPaid();
-					if (bill.getDueAmount() == paidAmount) {
+					String paidAmount = payReq.getTransaction().getAmountPaid();
+					if (bill.getDueAmount().equals(paidAmount)) {
 						String ackId = getAlphaNumericString();
 						transactions.put(ackId, payReq.getTransaction());
 						bill.setAckId(ackId);
-						bill.setDueAmount(0);
+						bill.setDueAmount("0");
 						// bills.put(refId, bill);
 
 						PaymentResponse payRes = new PaymentResponse(ackId);

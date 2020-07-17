@@ -24,7 +24,7 @@ public class BillResource {
 
 	@GET
 	public String getJsonMessages() throws Exception {
-		return "Bill fetched";
+		return "Biller System";
 	}
 
 	@Path("/fetch-bill")

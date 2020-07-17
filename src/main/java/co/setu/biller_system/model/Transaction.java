@@ -1,7 +1,7 @@
 package co.setu.biller_system.model;
 
 public class Transaction {
-	private double amountPaid;
+	private String amountPaid;
 	private String date;
 	private String id;
 
@@ -9,7 +9,7 @@ public class Transaction {
 		super();
 	}
 
-	public Transaction(double amountPaid, String date, String id) {
+	public Transaction(String amountPaid, String date, String id) {
 		super();
 		this.amountPaid = amountPaid;
 		this.date = date;
@@ -18,7 +18,7 @@ public class Transaction {
 
 	// Getter Methods
 
-	public double getAmountPaid() {
+	public String getAmountPaid() {
 		return amountPaid;
 	}
 
@@ -32,7 +32,7 @@ public class Transaction {
 
 	// Setter Methods
 
-	public void setAmountPaid(double amountPaid) {
+	public void setAmountPaid(String amountPaid) {
 		this.amountPaid = amountPaid;
 	}
 

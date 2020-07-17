@@ -2,7 +2,7 @@ package co.setu.biller_system.model;
 
 public class FetchBillResponse {
 	private String customerName;
-	private double dueAmount;
+	private String dueAmount;
 	private String dueDate;
 	private String refId;
 
@@ -10,7 +10,7 @@ public class FetchBillResponse {
 		super();
 	}
 
-	public FetchBillResponse(String customerName, double dueAmount, String dueDate, String refId) {
+	public FetchBillResponse(String customerName, String dueAmount, String dueDate, String refId) {
 		super();
 		this.customerName = customerName;
 		this.dueAmount = dueAmount;
@@ -26,11 +26,11 @@ public class FetchBillResponse {
 		this.customerName = customerName;
 	}
 
-	public double getDueAmount() {
+	public String getDueAmount() {
 		return dueAmount;
 	}
 
-	public void setDueAmount(double dueAmount) {
+	public void setDueAmount(String dueAmount) {
 		this.dueAmount = dueAmount;
 	}
 

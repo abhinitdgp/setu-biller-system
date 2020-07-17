@@ -1,7 +1,7 @@
 package co.setu.biller_system.model;
 
 public class BillDetails {
-	private double dueAmount;
+	private String dueAmount;
 	private String dueDate;
 	private String refId;
 	private String ackId;
@@ -10,18 +10,18 @@ public class BillDetails {
 		super();
 	}
 
-	public BillDetails(double dueAmount, String dueDate, String refId) {
+	public BillDetails(String dueAmount, String dueDate, String refId) {
 		super();
 		this.dueAmount = dueAmount;
 		this.dueDate = dueDate;
 		this.refId = refId;
 	}
 
-	public double getDueAmount() {
+	public String getDueAmount() {
 		return dueAmount;
 	}
 
-	public void setDueAmount(double dueAmount) {
+	public void setDueAmount(String dueAmount) {
 		this.dueAmount = dueAmount;
 	}
 
