@@ -108,6 +108,10 @@ public class BillService {
 				}
 
 			}
+			else {
+				ErrorMessage errorMsg = new ErrorMessage("invalid-ref-id", Statuses.ERROR);
+				return Response.status(404).entity(errorMsg).build();
+			}
 		}
 		return Response.status(Status.OK).build();
 
